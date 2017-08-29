@@ -3,8 +3,9 @@ import React from 'react';
 
 
 const VideoListItems = (props) =>  {
+  const video = props.video;
   return (
-    <li>hi</li>
+    <li>video</li>
   );
 }
 
