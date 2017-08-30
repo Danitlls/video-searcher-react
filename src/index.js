@@ -13,11 +13,17 @@ const API_KEY = 'AIzaSyBGJuGykyYOQo3M9cGfqPbXPhjfa1CbQe0';
 class App extends React.Component{
   constructor(props){
     super(props);
-    this.state = { videos: []} ;
+    this.state = {
+      videos: [],
+      selectedVideo: null
+    } ;
 
-{/* YTSearch will auto populate the list of videos with videos of surfboards, if key & value have the same name like 'items: items', I could just put 'items'*/}
+{/* YTSearch will auto populate the list of videos with videos of dance videos, if key & value have the same name like 'items: items', I could just put 'items'*/}
     YTSearch({key: API_KEY, term: 'dance'}, (data) => {
-      this.setState({ videos: data })
+      this.setState({
+        videos: data,
+        selectedVideo: data[0]
+      });
     });
 
   }
@@ -25,9 +31,13 @@ class App extends React.Component{
     return (
       <div>
       <SearchBar />
-      <VideoDetail video={this.state.videos[0]}/>
+      <VideoDetail video={this.state.selectedVideo}/>
+
       {/*Passing props(videos) to the child component (list), props videos will automaticly update*/}
-      <List videos={this.state.videos}/>
+      <List
+        onVideoSelect={ selectedVideo => this.setState({selectedVideo})}
+        videos={this.state.videos}/>
+        {/*Callback function onVideoSelect, it updates the state of selectedVideo in App, */}
       </div>
     );
   }

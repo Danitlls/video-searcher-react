@@ -1,11 +1,12 @@
 import React from 'react';
 
 
+  {/*  VideoListItems has acess to property video and onVideoSelect, pulled from props object, saying: ({video, onVideoSelect}) is THE SAME THAN: const video = props.video */}
 
-const VideoListItems = ({video}) =>  {
+const VideoListItems = ({video, onVideoSelect}) =>  {
   const imageUrl = video.snippet.thumbnails.default.url;
   return (
-    <li className="list-group-item">
+    <li onClick={() => onVideoSelect(video)} className="list-group-item">
       <div className="video-list media">
         <div className="media-left">
           <img className="media-object" src={imageUrl}/>
