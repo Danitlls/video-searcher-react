@@ -9,6 +9,7 @@ import VideoDetail from './components/video_detail';
 
 const API_KEY = 'AIzaSyBGJuGykyYOQo3M9cGfqPbXPhjfa1CbQe0';
 
+{/* YTSearch will auto populate the list of videos with videos of dance videos, if key & value have the same name like 'items: items', I could just put 'items'*/}
 
 class App extends React.Component{
   constructor(props){
@@ -16,21 +17,24 @@ class App extends React.Component{
     this.state = {
       videos: [],
       selectedVideo: null
-    } ;
+    };
+    this.videoSearch('dance');
+}
 
-{/* YTSearch will auto populate the list of videos with videos of dance videos, if key & value have the same name like 'items: items', I could just put 'items'*/}
-    YTSearch({key: API_KEY, term: 'dance'}, (data) => {
+  videoSearch(term){
+    YTSearch({key: API_KEY, term: term}, (data) => {
       this.setState({
         videos: data,
         selectedVideo: data[0]
       });
     });
-
   }
+
   render(){
     return (
       <div>
-      <SearchBar />
+      <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
+      {/* when Searchbar calls the functiuon onSerachTermChange it will do it with the serach-term: term, and it will be sent to videoSearch()*/}
       <VideoDetail video={this.state.selectedVideo}/>
 
       {/*Passing props(videos) to the child component (list), props videos will automaticly update*/}
