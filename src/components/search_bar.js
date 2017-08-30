@@ -11,6 +11,7 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div id="search-bar">
+        <h3>Search for videos:</h3>
         <input value={this.state.term}
         onChange={ event => this.onInputChange(event.target.value)}/>
       </div>

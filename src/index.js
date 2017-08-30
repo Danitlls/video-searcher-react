@@ -5,7 +5,7 @@ import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
 import List from './components/list';
 import VideoDetail from './components/video_detail';
-
+import _ from "lodash";
 
 const API_KEY = 'AIzaSyBGJuGykyYOQo3M9cGfqPbXPhjfa1CbQe0';
 
@@ -31,10 +31,12 @@ class App extends React.Component{
   }
 
   render(){
+    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300);
     return (
       <div>
-      <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
-      {/* when Searchbar calls the functiuon onSerachTermChange it will do it with the serach-term: term, and it will be sent to videoSearch()*/}
+      <SearchBar onSearchTermChange={videoSearch} />
+      {/* when Searchbar calls the functiuon onSerachTermChange it will do it with the serach-term: term, and it will be sent to videoSearch()
+        <SearchBar onSearchTermChange={term => this.videoSearch(term)} /> function changed to add delay, and ruhn videoSearch every 3 seconds*/}
       <VideoDetail video={this.state.selectedVideo}/>
 
       {/*Passing props(videos) to the child component (list), props videos will automaticly update*/}
