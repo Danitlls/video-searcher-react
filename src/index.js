@@ -18,7 +18,7 @@ class App extends React.Component{
       videos: [],
       selectedVideo: null
     };
-    this.videoSearch('dance');
+    this.videoSearch('love');
 }
 
   videoSearch(term){
