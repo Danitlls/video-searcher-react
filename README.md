@@ -1,8 +1,8 @@
-# Recoup Application
+# Video Searcher App
 
 
 #### Clone this Repo
 
-* cd ReduxSimpleStarter
+* cd video-searcher-react
 * npm install
 * npm start
